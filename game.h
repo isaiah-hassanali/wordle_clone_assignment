@@ -30,3 +30,10 @@ class Game {
         bool isAnswer(std::string guess);
         bool isValidWord(std::string guess);
 };
+
+enum GameState {
+    INVALID = 0,
+    ANSWER = 1,
+    VALID = 2,
+    GAMEOVER = 3
+};

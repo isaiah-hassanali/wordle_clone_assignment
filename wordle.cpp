@@ -38,7 +38,7 @@ int Wordle::attemptGuess(std::string guessText) {
     int status;
     status = game->checkGuess(guessText);
     guessEntry->setText("");
-    if (status == 0) {
+    if (status == INVALID) {
         alertText->setText(guessText + " is not a valid word.");
     }
     return status;

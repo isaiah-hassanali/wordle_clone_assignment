@@ -23,7 +23,6 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
 }
 
 int Game::checkGuess(std::string guess) {
-
     if (isValidWord(guess)) {
         if (isAnswer(guess)) {
             for (int i = 0; i < 5; i++) {
@@ -31,24 +30,18 @@ int Game::checkGuess(std::string guess) {
                 board[currentRow][i]->setStyleClass("correct");
                 board[currentRow][i]->setText(stringifiedChar);
             }
-            return 1;
+            return ANSWER;
         }
         for (int i = 0; i < 5; i++) {
             board[currentRow][i]->setText("B");
         }
         if (++currentRow > 6) {
-            return 3;
+            return GAMEOVER;
         } else {
-            return 2;
+            return VALID;
         }
     }
-    /*
-    for (int i = 0; i < 5; i++) {
-        std::string stringifiedChar(1, toupper(guess[i]));
-        board[currentRow][i]->setText(stringifiedChar);
-    }
-    */
-    return 0;
+    return INVALID;
 }
 
 std::string Game::pickRandomWord() {
