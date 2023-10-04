@@ -13,22 +13,22 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
     }
 
     std::string word;
-    std::ifstream wordFile("words.txt");
-    while(getline(wordFile, word)) {
-        validWords.insert(word);
+    std::ifstream guessesFile("guesses.txt");
+    while(getline(guessesFile, word)) {
+        validGuesses.insert(word);
     }
 
-    answer = pickRandomWord();
+    answer = pickRandomAnswer();
 
 }
 
 GameState Game::checkGuess(std::string guess) {
     if (isValidWord(guess)) {
         setRow(guess);
-        if (isAnswer(guess)) {
-            return WIN;
-        } else if (++guessNum == 6) {
+        if (++guessNum == 6) {
             return LOSE;
+        } else if (isAnswer(guess)) {
+            return WIN;
         } else {
             return VALID;
         }
@@ -36,15 +36,23 @@ GameState Game::checkGuess(std::string guess) {
     return INVALID;
 }
 
-int Game::getGuessNumber() {
+int Game::getNumGuesses() {
     return guessNum;
 }
 
-std::string Game::pickRandomWord() {
-    int randomNumber = rand() % 14855;
-    auto iterator = std::begin(validWords);
-    std::advance(iterator, randomNumber);
-    return *iterator;
+std::string Game::getAnswer() {
+    return answer;
+}
+
+std::string Game::pickRandomAnswer() {
+    int randomNumber = rand() % 3103;
+
+    std::string word;
+    std::ifstream answersFile("answers.txt");
+    for (int i = 0; i <= randomNumber; i++) {
+        std::getline(answersFile, word);
+    }
+    return word;
 }
 
 bool Game::isAnswer(std::string guess) {
@@ -52,7 +60,7 @@ bool Game::isAnswer(std::string guess) {
 }
 
 bool Game::isValidWord(std::string guess) {
-    return validWords.find(guess) != validWords.end();
+    return validGuesses.find(guess) != validGuesses.end();
 }
 
 void Game::setRow(std::string guess) {

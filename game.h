@@ -26,16 +26,18 @@ class Game {
     public:
         Game(Wt::WContainerWidget *boardContainer);
         GameState checkGuess(std::string guess);
-        int getGuessNumber();
+        int getNumGuesses();
+        std::string getAnswer();
 
     private:
         Wt::WText *board[6][5];
-        std::set<std::string> validWords;
+        std::set<std::string> validGuesses;
         int guessNum;
         std::string answer;
 
-        std::string pickRandomWord();
+        std::string pickRandomAnswer();
         bool isAnswer(std::string guess);
         bool isValidWord(std::string guess);
         void setRow(std::string guess);
+        void reset();
 };

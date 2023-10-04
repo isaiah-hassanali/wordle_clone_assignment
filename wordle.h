@@ -18,6 +18,7 @@ class Wordle: public Wt::WApplication {
         Wt::WLineEdit *guessEntry;
         Wt::WPushButton *inputButton;
         Wt::WText *alertText;
+        Wt::WContainerWidget *inputContainer;
 
         bool isValidGuess(std::string guess);
         bool isAlpha(std::string guess);

@@ -10,7 +10,7 @@ Wordle::Wordle(const Wt::WEnvironment &env): WApplication(env) {
     
     game = new Game(gameContainer->addWidget(std::make_unique<Wt::WContainerWidget>()));
 
-    Wt::WContainerWidget *inputContainer = gameContainer->addWidget(std::make_unique<Wt::WContainerWidget>());
+    inputContainer = gameContainer->addWidget(std::make_unique<Wt::WContainerWidget>());
     inputContainer->setStyleClass("input-container");
 
     guessEntry = inputContainer->addWidget(std::make_unique<Wt::WLineEdit>());
@@ -42,9 +42,11 @@ void Wordle::changeState(GameState state, std::string guessText) {
     if (state == INVALID) {
         alertText->setText(guessText + " is not a valid word.");
     } else if (state == WIN) {
-        alertText->setText("winner");
+        inputContainer->setDisabled(true);
+        alertText->setText("<span style=\"color: rgb(74, 130, 73);\">Congratulations! You won in " + std::to_string(game->getNumGuesses()) + " guesses.</span>");
     } else if (state == LOSE) {
-        alertText->setText("loser");
+        inputContainer->setDisabled(true);
+        alertText->setText("You lost. The answer was <span style=\"color: rgb(74, 130, 73);\">" + game->getAnswer() + ".</span>");
     }
 }
 
