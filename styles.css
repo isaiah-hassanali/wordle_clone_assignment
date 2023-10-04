@@ -69,6 +69,11 @@ body {
     margin-top: 2vh;
 }
 
+.play-again-button {
+    font-size: large;
+    margin-top: 2vh;
+}
+
 .correct {
     background-color: rgb(74, 130, 73);
 }
