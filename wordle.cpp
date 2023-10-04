@@ -15,18 +15,21 @@ Wordle::Wordle(const Wt::WEnvironment &env): WApplication(env) {
 
     guessEntry = inputContainer->addWidget(std::make_unique<Wt::WLineEdit>());
     guessEntry->setMaxLength(5);
+    guessEntry->setPlaceholderText("Enter a guess...");
     guessEntry->enterPressed().connect([=]() {
         std::string guessText = lowercaseGuessString();
         if (isValidGuess(guessText)) {
-            attemptGuess(guessText);
+            GameState state = game->checkGuess(guessText);
+            changeState(state, guessText);
         }
     });
 
-    inputButton = inputContainer->addWidget(std::make_unique<Wt::WPushButton>("Enter guess!"));
+    inputButton = inputContainer->addWidget(std::make_unique<Wt::WPushButton>("Submit"));
     inputButton->clicked().connect([=]() {
         std::string guessText = lowercaseGuessString();
         if (isValidGuess(guessText)) {
-            attemptGuess(guessText);
+            GameState state = game->checkGuess(guessText);
+            changeState(state, guessText);
         }
     });
 
@@ -34,14 +37,15 @@ Wordle::Wordle(const Wt::WEnvironment &env): WApplication(env) {
     alertText->setStyleClass("alert");
 }
 
-int Wordle::attemptGuess(std::string guessText) {
-    int status;
-    status = game->checkGuess(guessText);
+void Wordle::changeState(GameState state, std::string guessText) {
     guessEntry->setText("");
-    if (status == INVALID) {
+    if (state == INVALID) {
         alertText->setText(guessText + " is not a valid word.");
+    } else if (state == WIN) {
+        alertText->setText("winner");
+    } else if (state == LOSE) {
+        alertText->setText("loser");
     }
-    return status;
 }
 
 bool Wordle::isValidGuess(std::string guess) {

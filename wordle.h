@@ -20,7 +20,7 @@ class Wordle: public Wt::WApplication {
         Wt::WText *alertText;
 
         bool isValidGuess(std::string guess);
-        int attemptGuess(std::string guessText);
         bool isAlpha(std::string guess);
         std::string lowercaseGuessString();
+        void changeState(GameState state, std::string guessText);
 };
