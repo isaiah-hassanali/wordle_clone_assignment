@@ -1,5 +1,7 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include <stdlib.h>
-#include <iterator>
 #include <memory>
 #include <string>
 #include <set>
@@ -9,18 +11,8 @@
 #include <Wt/WText.h>
 #include <Wt/WPushButton.h>
 #include <Wt/WTable.h>
+#include "gamestate.h"
 
-
-enum GameState {
-    INVALID = 0,
-    WIN = 1,
-    VALID = 2,
-    LOSE = 3
-};
-
-/*
- * This class represents the gameboard and handles its display and word colouring.
- */
 class Game {
     public:
         Game(Wt::WContainerWidget *boardContainer);
@@ -40,3 +32,5 @@ class Game {
         bool isValidWord(std::string guess);
         void setRow(std::string guess);
 };
+
+#endif

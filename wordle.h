@@ -1,13 +1,16 @@
+#ifndef WORDLE_H
+#define WORDLE_H
+
 #include <memory>
+#include <string>
 #include <Wt/WApplication.h>
 #include <Wt/WContainerWidget.h>
 #include <Wt/WLineEdit.h>
+#include <Wt/WPushButton.h>
 #include <Wt/WText.h>
 #include "game.h"
+#include "gamestate.h"
 
-/*
- * Main class of the application. Handles user input and drives the game.
- */
 class Wordle: public Wt::WApplication {
     public:
         Wordle(const Wt::WEnvironment& env);
@@ -26,3 +29,5 @@ class Wordle: public Wt::WApplication {
         void changeState(GameState state, std::string guessText);
         void gameOver(bool gameOver);
 };
+
+#endif
