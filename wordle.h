@@ -18,16 +18,16 @@ class Wordle: public Wt::WApplication {
     private:
         Wt::WContainerWidget *gameContainer;
         Game *game;
+        Wt::WContainerWidget *inputContainer;
         Wt::WLineEdit *guessEntry;
         Wt::WPushButton *inputButton;
         Wt::WText *alertText;
-        Wt::WContainerWidget *inputContainer;
 
+        void changeState(GameState state, std::string guessText);
+        void gameOver(bool gameOver);
         bool isValidGuess(std::string guess);
         bool isAlpha(std::string guess);
         std::string lowercaseGuessString();
-        void changeState(GameState state, std::string guessText);
-        void gameOver(bool gameOver);
 };
 
 #endif

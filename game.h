@@ -17,14 +17,14 @@ class Game {
     public:
         Game(Wt::WContainerWidget *boardContainer);
         GameState checkGuess(std::string guess);
+        void resetGame();
         int getNumGuesses();
         std::string getAnswer();
-        void resetGame();
 
     private:
+        int guessNum;
         Wt::WText *board[6][5];
         std::set<std::string> validGuesses;
-        int guessNum;
         std::string answer;
 
         std::string pickRandomAnswer();
