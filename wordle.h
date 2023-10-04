@@ -24,4 +24,5 @@ class Wordle: public Wt::WApplication {
         bool isAlpha(std::string guess);
         std::string lowercaseGuessString();
         void changeState(GameState state, std::string guessText);
+        void gameOver(bool gameOver);
 };

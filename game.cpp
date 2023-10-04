@@ -36,6 +36,19 @@ GameState Game::checkGuess(std::string guess) {
     return INVALID;
 }
 
+void Game::resetGame() {
+    for (int i = 0; i < 6; ++i) {
+        for (int j = 0; j < 5; ++j) {
+            board[i][j]->setText("");
+            board[i][j]->setStyleClass("");
+        }
+    }
+
+    guessNum = 0;
+    
+    answer = pickRandomAnswer();
+}
+
 int Game::getNumGuesses() {
     return guessNum;
 }
@@ -45,6 +58,7 @@ std::string Game::getAnswer() {
 }
 
 std::string Game::pickRandomAnswer() {
+    srand(std::time(NULL));
     int randomNumber = rand() % 3103;
 
     std::string word;

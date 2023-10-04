@@ -28,6 +28,7 @@ class Game {
         GameState checkGuess(std::string guess);
         int getNumGuesses();
         std::string getAnswer();
+        void resetGame();
 
     private:
         Wt::WText *board[6][5];
@@ -39,5 +40,4 @@ class Game {
         bool isAnswer(std::string guess);
         bool isValidWord(std::string guess);
         void setRow(std::string guess);
-        void reset();
 };
