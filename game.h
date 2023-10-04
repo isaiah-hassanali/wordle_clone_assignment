@@ -29,6 +29,7 @@ class Game {
         std::string pickRandomWord();
         bool isAnswer(std::string guess);
         bool isValidWord(std::string guess);
+        void setRow(std::string guess);
 };
 
 enum GameState {

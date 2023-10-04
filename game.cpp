@@ -18,22 +18,18 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
         validWords.insert(word);
     }
 
-    answer = "whine";//pickRandomWord();
+    answer = "tears";//pickRandomWord();
 
 }
 
 int Game::checkGuess(std::string guess) {
     if (isValidWord(guess)) {
         if (isAnswer(guess)) {
-            for (int i = 0; i < 5; i++) {
-                std::string stringifiedChar(1, toupper(guess[i]));
-                board[currentRow][i]->setStyleClass("correct");
-                board[currentRow][i]->setText(stringifiedChar);
-            }
+            setRow(guess);
             return ANSWER;
         }
         for (int i = 0; i < 5; i++) {
-            board[currentRow][i]->setText("B");
+            setRow(guess);
         }
         if (++currentRow > 6) {
             return GAMEOVER;
@@ -57,4 +53,29 @@ bool Game::isAnswer(std::string guess) {
 
 bool Game::isValidWord(std::string guess) {
     return validWords.find(guess) != validWords.end();
+}
+
+void Game::setRow(std::string guess) {
+    std::vector<std::string> colours(5, "");
+
+
+    for (int i = 0; i < 5; i++) {
+        if (guess[i] == answer[i]) {
+            colours[i] = "correct";
+        } else {
+            auto iterator = find(answer.begin(), answer.end(), guess[i]);
+            int index = std::distance(answer.begin(), iterator);
+            if (iterator != answer.end() && guess[index] != answer[index]) {
+                colours[i] = "semi-correct";
+            } else {
+                colours[i] = "incorrect";
+            }
+        }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        board[currentRow][i]->setStyleClass(colours[i]);
+        std::string stringifiedChar(1, toupper(guess[i]));
+        board[currentRow][i]->setText(stringifiedChar);
+    }
 }
