@@ -11,30 +11,31 @@
 #include <Wt/WTable.h>
 #include <Wt/WString.h>
 
+
+enum GameState {
+    INVALID = 0,
+    WIN = 1,
+    VALID = 2,
+    LOSE = 3
+};
+
 /*
  * This class represents the gameboard and handles its display and word colouring.
  */
-
 class Game {
     public:
         Game(Wt::WContainerWidget *boardContainer);
-        int checkGuess(std::string guess);
+        GameState checkGuess(std::string guess);
+        int getGuessNumber();
 
     private:
         Wt::WText *board[6][5];
         std::set<std::string> validWords;
-        int currentRow;
+        int guessNum;
         std::string answer;
 
         std::string pickRandomWord();
         bool isAnswer(std::string guess);
         bool isValidWord(std::string guess);
         void setRow(std::string guess);
-};
-
-enum GameState {
-    INVALID = 0,
-    ANSWER = 1,
-    VALID = 2,
-    GAMEOVER = 3
 };

@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game(Wt::WContainerWidget *boardContainer) {
-    currentRow = 0;
+    guessNum = 0;
     Wt::WTable *table = boardContainer->addWidget(std::make_unique<Wt::WTable>());
     table->setStyleClass("board");
 
@@ -18,26 +18,26 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
         validWords.insert(word);
     }
 
-    answer = "close";//pickRandomWord();
+    answer = pickRandomWord();
 
 }
 
-int Game::checkGuess(std::string guess) {
+GameState Game::checkGuess(std::string guess) {
     if (isValidWord(guess)) {
+        setRow(guess);
         if (isAnswer(guess)) {
-            setRow(guess);
-            return ANSWER;
-        }
-        for (int i = 0; i < 5; i++) {
-            setRow(guess);
-        }
-        if (++currentRow > 6) {
-            return GAMEOVER;
+            return WIN;
+        } else if (++guessNum == 6) {
+            return LOSE;
         } else {
             return VALID;
         }
     }
     return INVALID;
+}
+
+int Game::getGuessNumber() {
+    return guessNum;
 }
 
 std::string Game::pickRandomWord() {
@@ -82,8 +82,8 @@ void Game::setRow(std::string guess) {
     }
 
     for (int i = 0; i < 5; i++) {
-        board[currentRow][i]->setStyleClass(colours[i]);
+        board[guessNum][i]->setStyleClass(colours[i]);
         std::string stringifiedChar(1, toupper(guess[i]));
-        board[currentRow][i]->setText(stringifiedChar);
+        board[guessNum][i]->setText(stringifiedChar);
     }
 }
