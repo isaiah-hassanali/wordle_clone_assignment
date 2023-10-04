@@ -9,7 +9,6 @@
 #include <Wt/WText.h>
 #include <Wt/WPushButton.h>
 #include <Wt/WTable.h>
-#include <Wt/WString.h>
 
 
 enum GameState {
