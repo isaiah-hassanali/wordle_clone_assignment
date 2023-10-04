@@ -18,7 +18,7 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
         validWords.insert(word);
     }
 
-    answer = "tears";//pickRandomWord();
+    answer = "close";//pickRandomWord();
 
 }
 
@@ -57,17 +57,25 @@ bool Game::isValidWord(std::string guess) {
 
 void Game::setRow(std::string guess) {
     std::vector<std::string> colours(5, "");
-
+    std::vector<bool> accountedFor(5, false);
 
     for (int i = 0; i < 5; i++) {
         if (guess[i] == answer[i]) {
             colours[i] = "correct";
-        } else {
-            auto iterator = find(answer.begin(), answer.end(), guess[i]);
-            int index = std::distance(answer.begin(), iterator);
-            if (iterator != answer.end() && guess[index] != answer[index]) {
-                colours[i] = "semi-correct";
-            } else {
+            accountedFor[i] = true;
+        }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        if (colours[i] == "") {
+            for (int j = 0; j < 5; j++) {
+                if (answer[j] == guess[i] && !accountedFor[j]) {
+                    colours[i] = "semi-correct";
+                    accountedFor[j] = true;
+                    break;
+                }
+            }
+            if (colours[i] == "") {
                 colours[i] = "incorrect";
             }
         }
