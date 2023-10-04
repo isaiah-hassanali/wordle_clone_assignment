@@ -1,0 +1,71 @@
+html {
+    height: 100%;
+    font-family: Courier, monospace;
+}
+
+body {
+    background-color: rgb(19, 19, 20);
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Wt-domRoot {
+    text-align: center;
+}
+
+.title {
+    color: white;
+    top: 5vh;
+    position: relative;
+    font-size: xx-large;
+}
+
+.game-container {
+    top: 10vh;
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.board {
+    font-size: xxx-large;
+    color: white;
+    border-spacing: 5px;
+    border-collapse: unset;
+}
+
+.board td {
+    border: 2px solid rgb(58, 58, 60);
+    min-width: 55px;
+    min-height: 55px;
+    text-align: center;
+}
+
+.board span {
+    padding: 0px 13.1px;
+}
+
+.input-container {
+    margin-top: 2vh;
+}
+
+.alert {
+    color: red;
+    margin-top: 2vh;
+}
+
+.correct {
+    background-color: rgb(74, 130, 73);
+}
+
+.semi-correct {
+    background-color: rgb(172, 149, 62);
+}
+
+.incorrect {
+    background-color: rgb(58, 58, 60);
+}
