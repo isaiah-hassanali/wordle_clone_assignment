@@ -25,10 +25,11 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
 GameState Game::checkGuess(std::string guess) {
     if (isValidWord(guess)) {
         setRow(guess);
-        if (++guessNum == 6) {
-            return LOSE;
-        } else if (isAnswer(guess)) {
+        guessNum++;
+        if (isAnswer(guess)) {
             return WIN;
+        } else if (guessNum == 6) {
+            return LOSE;
         } else {
             return VALID;
         }
@@ -45,7 +46,7 @@ void Game::resetGame() {
     }
 
     guessNum = 0;
-    
+
     answer = pickRandomAnswer();
 }
 
