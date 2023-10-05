@@ -14,6 +14,7 @@
 class Wordle: public Wt::WApplication {
     public:
         Wordle(const Wt::WEnvironment& env);
+        ~Wordle();
 
     private:
         Wt::WContainerWidget *gameContainer;

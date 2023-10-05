@@ -16,6 +16,7 @@
 class Game {
     public:
         Game(Wt::WContainerWidget *boardContainer);
+        ~Game();
         GameState checkGuess(std::string guess);
         void resetGame();
         int getNumGuesses();

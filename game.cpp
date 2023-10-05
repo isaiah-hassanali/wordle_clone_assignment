@@ -19,8 +19,9 @@ Game::Game(Wt::WContainerWidget *boardContainer) {
     }
 
     answer = pickRandomAnswer();
-
 }
+
+Game::~Game() {}
 
 GameState Game::checkGuess(std::string guess) {
     if (isValidWord(guess)) {

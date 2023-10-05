@@ -37,6 +37,8 @@ Wordle::Wordle(const Wt::WEnvironment &env): WApplication(env) {
     alertText->setStyleClass("alert");
 }
 
+Wordle::~Wordle() {}
+
 void Wordle::changeState(GameState state, std::string guessText) {
     guessEntry->setText("");
     if (state == INVALID) {
