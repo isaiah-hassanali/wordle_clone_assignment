@@ -1,3 +1,10 @@
+/**
+ * Author: Isaiah Hassanali
+ * Student Number: 251192094
+ * Description: This is the header file for wordle.cpp, containing the declaration for the Wordle class.
+ * Date: October 4, 2023
+ */
+
 #ifndef WORDLE_H
 #define WORDLE_H
 
@@ -24,6 +31,7 @@ class Wordle: public Wt::WApplication {
         Wt::WPushButton *inputButton;
         Wt::WText *alertText;
 
+        void sendGuess();
         void changeState(GameState state, std::string guessText);
         void gameOver(bool gameOver);
         bool isValidGuess(std::string guess);

@@ -1,3 +1,10 @@
+/**
+ * Author: Isaiah Hassanali
+ * Student Number: 251192094
+ * Description: This is the header file for game.cpp, containing the declaration for the Game class.
+ * Date: October 4, 2023
+ */
+
 #ifndef GAME_H
 #define GAME_H
 

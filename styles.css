@@ -1,3 +1,10 @@
+/**
+ * Author: Isaiah Hassanali
+ * Student Number: 251192094
+ * Description: This file contains styles for the Not Wordle web application.
+ * Date: October 4, 2023
+ */
+
 html {
     height: 100%;
     font-family: Courier, monospace;
@@ -74,6 +81,7 @@ body {
     margin-top: 2vh;
 }
 
+/* below are for the tile colouring */
 .correct {
     background-color: rgb(74, 130, 73);
 }
