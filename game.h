@@ -30,10 +30,10 @@ class Game {
         std::string getAnswer();
 
     private:
-        int guessNum;
-        Wt::WText *board[6][5];
-        std::set<std::string> validGuesses;
-        std::string answer;
+        int guessNum; // the current guess the user is on
+        Wt::WText *board[6][5]; // holds the text widgets that make up the game board
+        std::set<std::string> validGuesses; // contains all the words that are considered valid guesses
+        std::string answer; // contains the answer for a given round of the game
 
         std::string pickRandomAnswer();
         bool isAnswer(std::string guess);

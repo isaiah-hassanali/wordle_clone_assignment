@@ -8,6 +8,7 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+/* This enumeration increases readability of functions communicating game states. */
 enum GameState {
     INVALID = 0,
     WIN = 1,

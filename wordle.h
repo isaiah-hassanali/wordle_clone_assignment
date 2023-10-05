@@ -24,12 +24,12 @@ class Wordle: public Wt::WApplication {
         ~Wordle();
 
     private:
-        Wt::WContainerWidget *gameContainer;
-        Game *game;
-        Wt::WContainerWidget *inputContainer;
-        Wt::WLineEdit *guessEntry;
-        Wt::WPushButton *inputButton;
-        Wt::WText *alertText;
+        Wt::WContainerWidget *gameContainer; // reference to the container of all the main widgets making up the game
+        Game *game; // reference to the controls the game logic and word processing
+        Wt::WContainerWidget *inputContainer; // reference to the container of the text entry and submit button
+        Wt::WLineEdit *guessEntry; // reference to the text entry for guesses
+        Wt::WPushButton *inputButton; // reference to the input button
+        Wt::WText *alertText; // reference to the textbox that displays alerts
 
         void sendGuess();
         void changeState(GameState state, std::string guessText);
