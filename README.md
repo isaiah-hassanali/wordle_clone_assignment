@@ -1,7 +1,11 @@
-To build: make
+### Build
+Run `make` in the root directory.
 
-To run: ./wordle --docroot . --http-listen 0.0.0.0:8080
+### Run
+Run `./wordle --docroot . --http-listen 0.0.0.0:8080` then navigate to http://0.0.0.0:8080/ in your browser.
 
-To stop: CTRL-C
+### Stop
+Hit CTRL-C to stop the server.
 
-To cleanup: make clean
+### Cleanup
+To cleanup build files and the executable, run `make clean`.
